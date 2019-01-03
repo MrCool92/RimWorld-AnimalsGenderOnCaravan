@@ -26,6 +26,7 @@ namespace AnimalsGenderOnCaravan
                     Texture2D genderIcon = pawn.gender.GetIcon();
                     Rect position = new Rect(curX - (float)genderIcon.width, (rect.height - (float)genderIcon.width) / 2f, (float)genderIcon.width, (float)genderIcon.width);
                     curX -= (float)genderIcon.width;
+                    TooltipHandler.TipRegion(position, pawn.GetGenderLabel().CapitalizeFirst());
                     GUI.DrawTexture(position, genderIcon);
                 }
             }
