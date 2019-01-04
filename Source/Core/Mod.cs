@@ -11,7 +11,7 @@ namespace AnimalsGenderOnCaravan
         {
             GetSettings<Settings>();
 
-            HarmonyInstance harmony = HarmonyInstance.Create("com.animals.gender.on.caravan");
+            HarmonyInstance harmony = HarmonyInstance.Create("mrcool92.agoc");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
