@@ -64,9 +64,6 @@
     <Compile Include="Core\Settings.cs" />
     <Compile Include="HarmonyPatches\TransferableUIUtility_DoExtraAnimalIcons_Patch.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="About.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
