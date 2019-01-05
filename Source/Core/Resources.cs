@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace AnimalsGenderOnCaravan
 {
-    [StaticConstructorOnStartup]
     public static class Resources
     {
         public static readonly Texture2D VeryYoungIcon = ContentFinder<Texture2D>.Get("UI/Icons/LifeStage/VeryYoung", true);

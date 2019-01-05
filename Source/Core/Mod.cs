@@ -10,7 +10,6 @@ namespace AnimalsGenderOnCaravan
         public Mod(ModContentPack content) : base(content)
         {
             GetSettings<Settings>();
-
             HarmonyInstance harmony = HarmonyInstance.Create("mrcool92.agoc");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
@@ -18,7 +17,6 @@ namespace AnimalsGenderOnCaravan
         public override void DoSettingsWindowContents(Rect inRect)
         {
             base.DoSettingsWindowContents(inRect);
-
             GetSettings<Settings>().DoWindowContents(inRect);
         }
 

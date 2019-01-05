@@ -14,18 +14,13 @@ namespace AnimalsGenderOnCaravan
         {
             Listing_Standard listing_Standard = new Listing_Standard();
             listing_Standard.Begin(wrect);
-
-            // Show life stage checkbox
             listing_Standard.CheckboxLabeled("AGOC.ShowLifeStage".Translate(), ref showLifeStage, null);
-
-            // Life stage icon      
             Texture2D icon = GetLifeStagIcon();
             Rect rect = new Rect(Text.CalcSize("AGOC.ShowLifeStage".Translate()).x + 5f, -1f, icon.width, icon.height);
             Color previousColor = GUI.color;
             GUI.color = new Color(1f, 1f, 1f, showLifeStage ? 1f : .2f);
             GUI.DrawTexture(rect, icon);
-            GUI.color = previousColor;
-            
+            GUI.color = previousColor;          
             listing_Standard.Gap(12f);
             listing_Standard.End();
         }
@@ -38,7 +33,6 @@ namespace AnimalsGenderOnCaravan
         private Texture2D GetLifeStagIcon()
         {
             float p = Time.time % 3f;
-
             if (p > 2f)
             {
                 return Resources.VeryYoungIcon;
@@ -49,6 +43,6 @@ namespace AnimalsGenderOnCaravan
             return Resources.AdultIcon;          
         }
 
-        public bool showLifeStage = true;
+        public bool showLifeStage;
     }
 }
