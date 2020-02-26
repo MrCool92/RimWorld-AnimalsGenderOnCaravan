@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using Verse;
 using RimWorld;
 using UnityEngine;
@@ -18,16 +18,16 @@ namespace AnimalsGenderOnCaravan
                     Texture2D lifeStageIcon = pawn.ageTracker.CurLifeStageRace.GetIcon(pawn);
                     if (lifeStageIcon != null)
                     {
-                        Rect rect2 = new Rect(curX - (float)lifeStageIcon.width, (rect.height - (float)lifeStageIcon.width) / 2f, (float)lifeStageIcon.width, (float)lifeStageIcon.width);
-                        curX -= (float)lifeStageIcon.width;
+                        Rect rect2 = new Rect(curX - Resources.LifeStageIconWidth, (rect.height - Resources.LifeStageIconWidth) / 2f, Resources.LifeStageIconWidth, Resources.LifeStageIconWidth);
+                        curX -= Resources.LifeStageIconWidth;
                         TooltipHandler.TipRegion(rect2, pawn.ageTracker.CurLifeStage.LabelCap);
                         GUI.DrawTexture(rect2, lifeStageIcon);
                     }
                 }
 
                 Texture2D genderIcon = pawn.gender.GetIcon();
-                Rect rect1 = new Rect(curX - (float)genderIcon.width, (rect.height - (float)genderIcon.width) / 2f, (float)genderIcon.width, (float)genderIcon.width);
-                curX -= (float)genderIcon.width;
+                Rect rect1 = new Rect(curX - Resources.GenderIconWidth, (rect.height - Resources.GenderIconWidth) / 2f, Resources.GenderIconWidth, Resources.GenderIconWidth);
+                curX -= Resources.GenderIconWidth;
                 TooltipHandler.TipRegion(rect1, pawn.GetGenderLabel().CapitalizeFirst());
                 GUI.DrawTexture(rect1, genderIcon);
             }

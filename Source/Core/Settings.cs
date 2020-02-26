@@ -16,7 +16,7 @@ namespace AnimalsGenderOnCaravan
             listing_Standard.Begin(wrect);
             listing_Standard.CheckboxLabeled("AGOC.ShowLifeStage".Translate(), ref showLifeStage, null);
             Texture2D icon = GetLifeStagIcon();
-            Rect rect = new Rect(Text.CalcSize("AGOC.ShowLifeStage".Translate()).x + 5f, -1f, icon.width, icon.height);
+            Rect rect = new Rect(Text.CalcSize("AGOC.ShowLifeStage".Translate()).x + 5f, -1f, Resources.LifeStageIconWidth, Resources.LifeStageIconWidth);
             Color previousColor = GUI.color;
             GUI.color = new Color(1f, 1f, 1f, showLifeStage ? 1f : .2f);
             GUI.DrawTexture(rect, icon);
