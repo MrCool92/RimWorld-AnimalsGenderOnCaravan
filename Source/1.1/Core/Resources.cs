@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace AnimalsGenderOnCaravan
 {
+    [StaticConstructorOnStartup]
     public static class Resources
     {
         [TweakValue("Interface", 0f, 50f)]
