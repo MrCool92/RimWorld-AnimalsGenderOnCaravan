@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using System.Reflection;
-using Verse;
 using UnityEngine;
+using Verse;
 
 namespace AnimalsGenderOnCaravan
 {
@@ -10,7 +10,7 @@ namespace AnimalsGenderOnCaravan
         public Mod(ModContentPack content) : base(content)
         {
             GetSettings<Settings>();
-            Harmony harmony = new HarmonyLib.Harmony("mrcool92.agoc");
+            Harmony harmony = new Harmony("mrcool92.agoc");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 

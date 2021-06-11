@@ -1,10 +1,12 @@
-﻿using Verse;
-using UnityEngine;
+﻿using UnityEngine;
+using Verse;
 
 namespace AnimalsGenderOnCaravan
 {
     internal class Settings : ModSettings
     {
+        public bool showLifeStage;
+
         public static Settings Get()
         {
             return LoadedModManager.GetMod<Mod>().GetSettings<Settings>();
@@ -34,15 +36,10 @@ namespace AnimalsGenderOnCaravan
         {
             float p = Time.time % 3f;
             if (p > 2f)
-            {
                 return Resources.VeryYoungIcon;
-            } else if (p > 1f)
-            {
+            else if (p > 1f)
                 return Resources.YoungIcon;
-            }
             return Resources.AdultIcon;          
         }
-
-        public bool showLifeStage;
     }
 }
