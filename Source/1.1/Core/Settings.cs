@@ -5,7 +5,7 @@ namespace AnimalsGenderOnCaravan
 {
     internal class Settings : ModSettings
     {
-        public bool showLifeStage;
+        public bool showLifeStage = true;
 
         public static Settings Get()
         {
