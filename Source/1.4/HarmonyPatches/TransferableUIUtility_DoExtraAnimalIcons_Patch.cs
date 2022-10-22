@@ -6,7 +6,7 @@ using UnityEngine;
 namespace AnimalsGenderOnCaravan
 {
     [HarmonyPatch(typeof(TransferableUIUtility), "DoExtraIcons")]
-    static class TransferableUIUtility_DoExtraAnimalIcons_Patch
+    static class TransferableUIUtility_DoExtraIcons_Patch
     {
         static void Prefix(Transferable trad, Rect rect, ref float curX)
         {

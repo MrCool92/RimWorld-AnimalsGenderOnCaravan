@@ -18,6 +18,9 @@
 			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
 		</li>
 	</modDependencies>
+	<loadAfter>
+		<li>brrainz.harmony</li>
+	</loadAfter>
 	<description>Shows animals gender icon on caravan form</description>
 	<url>https://steamcommunity.com/id/mrcool92/myworkshopfiles/?appid=294100</url>
 </ModMetaData>
