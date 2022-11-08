@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+# Project
+1.2/Assemblies/0Harmony.dll
+1.4/Assemblies/0Harmony.dll

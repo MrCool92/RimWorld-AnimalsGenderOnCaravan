@@ -11,9 +11,13 @@ namespace AnimalsGenderOnCaravan
         static void Prefix(Transferable trad, Rect rect, ref float curX)
         {
             Pawn pawn = trad.AnyThing as Pawn;
-            if (pawn != null && pawn.RaceProps.Animal)
+            if (pawn != null && (pawn.RaceProps.Animal || (pawn.RaceProps.Humanlike && pawn.RaceProps.hasGenders)))
             {
-                if (Settings.Get().showLifeStage)
+                bool isAnimal = pawn.RaceProps.Animal;
+                Settings settings = Settings.Get();
+                
+                // Life stage icon
+                if (settings.ShowLifeStage(isAnimal))
                 {
                     Texture2D lifeStageIcon = pawn.ageTracker.CurLifeStageRace.GetIcon(pawn);
                     if (lifeStageIcon != null)
@@ -26,11 +30,15 @@ namespace AnimalsGenderOnCaravan
                     }
                 }
 
-                Texture2D genderIcon = pawn.gender.GetIcon();
-                Rect rect1 = new Rect(curX - Resources.GenderIconWidth, (rect.height - Resources.GenderIconWidth) / 2f, Resources.GenderIconWidth, Resources.GenderIconWidth);
-                curX -= Resources.GenderIconWidth;
-                TooltipHandler.TipRegion(rect1, pawn.GetGenderLabel().CapitalizeFirst());
-                GUI.DrawTexture(rect1, genderIcon);
+                // Gender icon
+                if (settings.ShowGender(isAnimal))
+                {
+                    Texture2D genderIcon = pawn.gender.GetIcon();
+                    Rect rect1 = new Rect(curX - Resources.GenderIconWidth, (rect.height - Resources.GenderIconWidth) / 2f, Resources.GenderIconWidth, Resources.GenderIconWidth);
+                    curX -= Resources.GenderIconWidth;
+                    TooltipHandler.TipRegion(rect1, pawn.GetGenderLabel().CapitalizeFirst());
+                    GUI.DrawTexture(rect1, genderIcon);
+                }
             }
         }
     }
