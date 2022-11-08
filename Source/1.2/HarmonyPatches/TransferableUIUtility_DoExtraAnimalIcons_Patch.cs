@@ -21,7 +21,7 @@ namespace AnimalsGenderOnCaravan
                         Rect rect2 = new Rect(curX - Resources.LifeStageIconWidth, (rect.height - Resources.LifeStageIconWidth) / 2f, Resources.LifeStageIconWidth, Resources.LifeStageIconWidth);
                         curX -= Resources.LifeStageIconWidth;
                         pawn.ageTracker.AgeBiologicalTicks.TicksToPeriod(out int years, out int quadrums, out int days, out float hoursFloat);
-                        TooltipHandler.TipRegion(rect2, pawn.ageTracker.CurLifeStage.LabelCap.CapitalizeFirst() + "/n/n" + "AgeBiological".Translate(years, quadrums, days));
+                        TooltipHandler.TipRegion(rect2, pawn.ageTracker.CurLifeStage.LabelCap.CapitalizeFirst() + "\n\n" + "AgeBiological".Translate(years, quadrums, days));
                         GUI.DrawTexture(rect2, lifeStageIcon);
                     }
                 }
