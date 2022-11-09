@@ -1,14 +1,18 @@
 ﻿using HarmonyLib;
-using Verse;
 using RimWorld;
 using UnityEngine;
+using Verse;
 
 namespace AnimalsGenderOnCaravan
 {
+    /// <summary>
+    /// Adds gender and life stage icons to animals and colonists in caravan and trade panels.
+    /// </summary>
     [HarmonyPatch(typeof(TransferableUIUtility), "DoExtraIcons")]
-    static class TransferableUIUtility_DoExtraIcons_Patch
+    public static class TransferableUIUtility_DoExtraIcons_Patch
     {
-        static void Prefix(Transferable trad, Rect rect, ref float curX)
+        [HarmonyPrefix]
+        public static void Prefix(Transferable trad, Rect rect, ref float curX)
         {
             Pawn pawn = trad.AnyThing as Pawn;
             if (pawn != null && (pawn.RaceProps.Animal || (pawn.RaceProps.Humanlike && pawn.RaceProps.hasGenders)))
@@ -17,7 +21,7 @@ namespace AnimalsGenderOnCaravan
                 Settings settings = Settings.Get();
                 
                 // Life stage icon
-                if (settings.ShowLifeStage(isAnimal))
+                if (settings.GetShowLifeStage(isAnimal))
                 {
                     Texture2D lifeStageIcon = pawn.ageTracker.CurLifeStageRace.GetIcon(pawn);
                     if (lifeStageIcon != null)
@@ -31,7 +35,7 @@ namespace AnimalsGenderOnCaravan
                 }
 
                 // Gender icon
-                if (settings.ShowGender(isAnimal))
+                if (settings.GetShowGender(isAnimal))
                 {
                     Texture2D genderIcon = pawn.gender.GetIcon();
                     Rect rect1 = new Rect(curX - Resources.GenderIconWidth, (rect.height - Resources.GenderIconWidth) / 2f, Resources.GenderIconWidth, Resources.GenderIconWidth);

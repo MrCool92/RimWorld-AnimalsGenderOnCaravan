@@ -8,6 +8,7 @@ namespace AnimalsGenderOnCaravan
         public bool showLifeStage = true;
         public bool humanShowGender = false;
         public bool humanShowLifeStage = false;
+        public bool removeReservedWeaponIconSpace = false;
 
         public static Settings Get()
         {
@@ -23,25 +24,46 @@ namespace AnimalsGenderOnCaravan
             listing_Standard.Label("Animals");
             
             // Show life stage
-            LifeStage(listing_Standard, ref showLifeStage);
+            DrawLifeStage(listing_Standard, ref showLifeStage);
             
             listing_Standard.Gap();
             
-            // Humanlike
-            listing_Standard.Label("Humanlike");
+            // Colonists
+            listing_Standard.Label("Colonists");
             
             // Show gender
             listing_Standard.CheckboxLabeled("AGOC.ShowGender".Translate(), ref humanShowGender, null);
             
             // Show life stage
-            LifeStage(listing_Standard, ref humanShowLifeStage);
+            DrawLifeStage(listing_Standard, ref humanShowLifeStage);
+            
+            // Remove reserved empty weapon icon space
+            bool changed = removeReservedWeaponIconSpace;
+            listing_Standard.CheckboxLabeled("AGOC.PawnWeaponIconFix".Translate(), ref removeReservedWeaponIconSpace, null);
+            if (changed != removeReservedWeaponIconSpace)
+                AnimalsGenderOnCaravan.Mod.Patch_TransferableOneWayWidget(removeReservedWeaponIconSpace);
             
             listing_Standard.End();
         }
-
+        
         public override void ExposeData()
         {
             Scribe_Values.Look(ref showLifeStage, "showLifeStage", true, false);
+            Scribe_Values.Look(ref humanShowGender, "humanShowGender", false, false);
+            Scribe_Values.Look(ref humanShowLifeStage, "humanShowLifeStage", false, false);
+            Scribe_Values.Look(ref removeReservedWeaponIconSpace, "removeReservedWeaponIconSpace", false, false);
+        }
+        
+        private void DrawLifeStage(Listing_Standard listing, ref bool enabled)
+        {
+            listing.CheckboxLabeled("AGOC.ShowLifeStage".Translate(), ref enabled, null);
+
+            float iconYPosition = listing.CurHeight - Resources.LifeStageIconWidth;
+            Rect rect = new Rect(Text.CalcSize("AGOC.ShowLifeStage".Translate()).x + 5f, iconYPosition - 1f, Resources.LifeStageIconWidth, Resources.LifeStageIconWidth);
+            Color previousColor = GUI.color;
+            GUI.color = new Color(1f, 1f, 1f, enabled ? 1f : .2f);
+            GUI.DrawTexture(rect, GetLifeStageIcon());
+            GUI.color = previousColor;
         }
 
         private Texture2D GetLifeStageIcon()
@@ -54,26 +76,15 @@ namespace AnimalsGenderOnCaravan
             return Resources.AdultIcon;
         }
 
-        public bool ShowGender(bool isAnimal)
+        public bool GetShowGender(bool isAnimal)
         {
             return isAnimal || humanShowGender;
         }
         
-        public bool ShowLifeStage(bool isAnimal)
+        public bool GetShowLifeStage(bool isAnimal)
         {
             return isAnimal ? showLifeStage : humanShowLifeStage;
         }
 
-        private void LifeStage(Listing_Standard listing, ref bool enabled)
-        {
-            listing.CheckboxLabeled("AGOC.ShowLifeStage".Translate(), ref enabled, null);
-
-            float iconYPosition = listing.CurHeight - Resources.LifeStageIconWidth;
-            Rect rect = new Rect(Text.CalcSize("AGOC.ShowLifeStage".Translate()).x + 5f, iconYPosition - 1f, Resources.LifeStageIconWidth, Resources.LifeStageIconWidth);
-            Color previousColor = GUI.color;
-            GUI.color = new Color(1f, 1f, 1f, enabled ? 1f : .2f);
-            GUI.DrawTexture(rect, GetLifeStageIcon());
-            GUI.color = previousColor;
-        }
     }
 }
