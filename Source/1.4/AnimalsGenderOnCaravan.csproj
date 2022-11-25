@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Core\Mod.cs" />
     <Compile Include="HarmonyPatches\TransferableOneWayWidget_DoRow_Patch.cs" />
+    <Compile Include="HarmonyPatches\TransferableUtility_TransferAsOne_Patch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Resources.cs" />
     <Compile Include="Core\Settings.cs" />

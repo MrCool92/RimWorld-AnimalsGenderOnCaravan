@@ -43,6 +43,19 @@ namespace AnimalsGenderOnCaravan
                     TooltipHandler.TipRegion(rect1, pawn.GetGenderLabel().CapitalizeFirst());
                     GUI.DrawTexture(rect1, genderIcon);
                 }
+
+                // Follow Drafted Master icon
+                if (settings.showFollowDraftedMaster)
+                {
+                    if (pawn.playerSettings?.followDrafted ?? false)
+                    {
+                        var followMasterIcon = Resources.FollowMasterIcon;
+                        var rectIcon = new Rect(curX - Resources.FollowMasterIconWidth, (rect.height - Resources.FollowMasterIconWidth) / 2f, Resources.FollowMasterIconWidth, Resources.FollowMasterIconWidth);
+                        curX -= Resources.FollowMasterIconWidth;
+                        TooltipHandler.TipRegion(rectIcon, "CreatureFollowDrafted".Translate());
+                        GUI.DrawTexture(rectIcon, followMasterIcon);
+                    }
+                }
             }
         }
     }
