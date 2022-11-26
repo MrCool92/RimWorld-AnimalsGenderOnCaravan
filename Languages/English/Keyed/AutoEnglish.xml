@@ -4,4 +4,5 @@
 	<AGOC.ShowLifeStage>Show life stage</AGOC.ShowLifeStage>
 	<AGOC.ShowGender>Show gender</AGOC.ShowGender>
 	<AGOC.PawnWeaponIconFix>Remove reserved empty weapon icon space</AGOC.PawnWeaponIconFix>
+	<AGOC.FollowDraftedMaster>Show follow master while drafted status</AGOC.FollowDraftedMaster>
 </LanguageData>

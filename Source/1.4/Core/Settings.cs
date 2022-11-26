@@ -9,6 +9,7 @@ namespace AnimalsGenderOnCaravan
         public bool humanShowGender = false;
         public bool humanShowLifeStage = false;
         public bool removeReservedWeaponIconSpace = false;
+        public bool showFollowDraftedMaster = false;
 
         public static Settings Get()
         {
@@ -26,6 +27,9 @@ namespace AnimalsGenderOnCaravan
             // Show life stage
             DrawLifeStage(listing_Standard, ref showLifeStage);
             
+            // Show Follow Drafted Master
+            listing_Standard.CheckboxLabeled("AGOC.FollowDraftedMaster".Translate(), ref showFollowDraftedMaster, null);
+            
             listing_Standard.Gap();
             
             // Colonists
@@ -38,20 +42,19 @@ namespace AnimalsGenderOnCaravan
             DrawLifeStage(listing_Standard, ref humanShowLifeStage);
             
             // Remove reserved empty weapon icon space
-            bool changed = removeReservedWeaponIconSpace;
             listing_Standard.CheckboxLabeled("AGOC.PawnWeaponIconFix".Translate(), ref removeReservedWeaponIconSpace, null);
-            if (changed != removeReservedWeaponIconSpace)
-                AnimalsGenderOnCaravan.Mod.Patch_TransferableOneWayWidget(removeReservedWeaponIconSpace);
+            
             
             listing_Standard.End();
         }
         
         public override void ExposeData()
         {
-            Scribe_Values.Look(ref showLifeStage, "showLifeStage", true, false);
-            Scribe_Values.Look(ref humanShowGender, "humanShowGender", false, false);
-            Scribe_Values.Look(ref humanShowLifeStage, "humanShowLifeStage", false, false);
-            Scribe_Values.Look(ref removeReservedWeaponIconSpace, "removeReservedWeaponIconSpace", false, false);
+            Scribe_Values.Look(ref showLifeStage, nameof(showLifeStage), true, false);
+            Scribe_Values.Look(ref humanShowGender, nameof(humanShowGender), false, false);
+            Scribe_Values.Look(ref humanShowLifeStage, nameof(humanShowLifeStage), false, false);
+            Scribe_Values.Look(ref removeReservedWeaponIconSpace, nameof(removeReservedWeaponIconSpace), false, false);
+            Scribe_Values.Look(ref showFollowDraftedMaster, nameof(showFollowDraftedMaster), false, false);
         }
         
         private void DrawLifeStage(Listing_Standard listing, ref bool enabled)
