@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace AnimalsGenderOnCaravan
@@ -17,29 +18,29 @@ namespace AnimalsGenderOnCaravan
                 return true; // let original RimWorld decide here
             
             Pawn pawn1 = (Pawn) a;
-            Pawn pawn2 = (Pawn) b;
-            if (!pawn1.RaceProps.Animal) 
-                return true;
-            
-            TrainableDef attackTraining = TrainableDefOf.Release;
-            if (
-                pawn1.training.HasLearned(attackTraining) ^
-                pawn2.training.HasLearned(attackTraining)
-            )
+            if (pawn1.RaceProps.Animal)
             {
-                // if one has learned to be released for attacking and the other one not then avoid stacking
-                __result = false;
-                return false;
-            }
+                Pawn pawn2 = (Pawn) b;
+                TrainableDef attackTraining = TrainableDefOf.Release;
+                if (
+                    (pawn1.training?.HasLearned(attackTraining) ?? false) ^
+                    (pawn2.training?.HasLearned(attackTraining) ?? false)
+                )
+                {
+                    // if one has learned to be released for attacking and the other one not then avoid stacking
+                    __result = false;
+                    return false;
+                }
 
-            if (
-                (pawn1.playerSettings?.followDrafted ?? false) ^
-                (pawn2.playerSettings?.followDrafted ?? false)
-            )
-            {
-                // if one is set to follow drafted master and the other one not then avoid stacking
-                __result = false;
-                return false;
+                if (
+                    (pawn1.playerSettings?.followDrafted ?? false) ^
+                    (pawn2.playerSettings?.followDrafted ?? false)
+                )
+                {
+                    // if one is set to follow drafted master and the other one not then avoid stacking
+                    __result = false;
+                    return false;
+                }
             }
 
             return true;
