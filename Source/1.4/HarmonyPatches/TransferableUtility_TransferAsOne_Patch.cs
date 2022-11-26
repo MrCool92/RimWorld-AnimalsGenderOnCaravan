@@ -16,11 +16,12 @@ namespace AnimalsGenderOnCaravan
             if (a.def.category != ThingCategory.Pawn || b.def != a.def) 
                 return true; // let original RimWorld decide here
             
-            var pawn1 = (Pawn) a;
-            var pawn2 = (Pawn) b;
+            Pawn pawn1 = (Pawn) a;
+            Pawn pawn2 = (Pawn) b;
             if (!pawn1.RaceProps.Animal) 
                 return true;
-            var attackTraining = TrainableDefOf.Release;
+            
+            TrainableDef attackTraining = TrainableDefOf.Release;
             if (
                 pawn1.training.HasLearned(attackTraining) ^
                 pawn2.training.HasLearned(attackTraining)

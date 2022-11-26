@@ -44,7 +44,6 @@ namespace AnimalsGenderOnCaravan
             // Remove reserved empty weapon icon space
             listing_Standard.CheckboxLabeled("AGOC.PawnWeaponIconFix".Translate(), ref removeReservedWeaponIconSpace, null);
             
-            
             listing_Standard.End();
         }
         

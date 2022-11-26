@@ -27,7 +27,6 @@ namespace AnimalsGenderOnCaravan
                 bool shouldDrawWeapon = pawn != null && pawn.equipment != null && pawn.equipment.Primary != null;
                 drawEquippedWeapon(__instance) = shouldDrawWeapon;
             }
-            
         }
         
         [HarmonyPostfix]

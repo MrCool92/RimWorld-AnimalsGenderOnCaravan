@@ -8,7 +8,7 @@ namespace AnimalsGenderOnCaravan
     /// <summary>
     /// Adds gender and life stage icons to animals and colonists in caravan and trade panels.
     /// </summary>
-    [HarmonyPatch(typeof(TransferableUIUtility), "DoExtraIcons")]
+    [HarmonyPatch(typeof(TransferableUIUtility), nameof(TransferableUIUtility.DoExtraIcons))]
     public static class TransferableUIUtility_DoExtraIcons_Patch
     {
         [HarmonyPrefix]
@@ -49,8 +49,8 @@ namespace AnimalsGenderOnCaravan
                 {
                     if (pawn.playerSettings?.followDrafted ?? false)
                     {
-                        var followMasterIcon = Resources.FollowMasterIcon;
-                        var rectIcon = new Rect(curX - Resources.FollowMasterIconWidth, (rect.height - Resources.FollowMasterIconWidth) / 2f, Resources.FollowMasterIconWidth, Resources.FollowMasterIconWidth);
+                        Texture2D followMasterIcon = Resources.FollowMasterIcon;
+                        Rect rectIcon = new Rect(curX - Resources.FollowMasterIconWidth, (rect.height - Resources.FollowMasterIconWidth) / 2f, Resources.FollowMasterIconWidth, Resources.FollowMasterIconWidth);
                         curX -= Resources.FollowMasterIconWidth;
                         TooltipHandler.TipRegion(rectIcon, "CreatureFollowDrafted".Translate());
                         GUI.DrawTexture(rectIcon, followMasterIcon);
